@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Home from './Home';
+import ViewsTodos from './ViewTodos';
+import RegisterTodos from './RegisterTodos';
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <h1>Single Page Application</h1>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/viewTodos">Views Todos</Link>
+              </li>
+              <li>
+                <Link to="/registerTodos">Register Todos</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <Switch>
+            <Route path="/viewTodos">
+              <ViewsTodos />
+            </Route>
+            <Route path="/registerTodos">
+              <RegisterTodos />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
-
-export default App;
